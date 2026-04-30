@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sergio Ibarra — Ingeniero en Informática | Desarrollo de Software a la Medida</title>
+    <meta name="description" content="Desarrollo de software personalizado. Sistemas web, apps, e-commerce, SaaS. 5 años de experiencia liderando equipos y proyectos de principio a fin.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0b; --bg-2: #111113; --bg-3: #18181b;
+            --fg: #fafafa; --fg-2: #a1a1aa; --fg-3: #71717a;
+            --accent: #3b82f6; --accent-2: #2563eb; --accent-glow: rgba(59,130,246,.15);
+            --border: #27272a;
+            --card-bg: var(--bg-2);
+            --font: 'Inter', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --max-w: 1100px;
+        }
+        html.light {
+            --bg: #ffffff; --bg-2: #f8f9fa; --bg-3: #f0f1f3;
+            --fg: #111113; --fg-2: #52525b; --fg-3: #a1a1aa;
+            --accent: #2563eb; --accent-2: #1d4ed8; --accent-glow: rgba(37,99,235,.08);
+            --border: #e4e4e7;
+            --card-bg: #fff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font); background: var(--bg); color: var(--fg); line-height: 1.6; -webkit-font-smoothing: antialiased; transition: background .3s, color .3s; }
+        a { color: var(--accent); text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        /* Nav */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,11,.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transition: background .3s; }
+        html.light .nav { background: rgba(255,255,255,.9); }
+        .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-weight: 800; font-size: 18px; color: var(--fg); display: flex; align-items: center; gap: 2px; }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links a { color: var(--fg-2); font-size: 14px; font-weight: 500; transition: color .2s; }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-btn { background: var(--bg-3); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 12px; font-weight: 600; color: var(--fg-2); cursor: pointer; font-family: var(--mono); transition: all .2s; }
+        .nav-btn:hover { border-color: var(--fg-3); }
+        .nav-cta { background: var(--accent); color: #fff !important; padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; transition: background .2s; }
+        .nav-cta:hover { background: var(--accent-2); }
+        .nav-mobile { display: none; background: none; border: none; color: var(--fg); cursor: pointer; font-size: 24px; }
+
+        /* Hero */
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 80px 24px 60px; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -40%; right: -20%; width: 700px; height: 700px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%); pointer-events: none; }
+        .hero-inner { max-width: var(--max-w); margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-tag { font-family: var(--mono); font-size: 13px; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .hero-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+        .hero h1 { font-size: clamp(36px, 5vw, 54px); font-weight: 800; line-height: 1.08; margin-bottom: 20px; letter-spacing: -.03em; }
+        .hero h1 .accent { color: var(--accent); }
+        .hero p { font-size: 17px; color: var(--fg-2); max-width: 460px; margin-bottom: 32px; line-height: 1.7; }
+        .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 600; transition: all .2s; border: none; cursor: pointer; font-family: var(--font); }
+        .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 4px 20px -4px rgba(59,130,246,.4); }
+        .btn-primary:hover { background: var(--accent-2); transform: translateY(-1px); }
+        .btn-outline { background: transparent; color: var(--fg); border: 1px solid var(--border); }
+        .btn-outline:hover { border-color: var(--fg-3); background: var(--bg-2); }
+        .hero-stats { display: flex; gap: 32px; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+        .stat-n { font-size: 28px; font-weight: 800; }
+        .stat-l { font-size: 12px; color: var(--fg-3); text-transform: uppercase; letter-spacing: .08em; margin-top: 2px; }
+        .hero-visual { display: flex; justify-content: center; }
+        .hero-code { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 24px; font-family: var(--mono); font-size: 13px; color: var(--fg-2); line-height: 1.8; width: 100%; max-width: 420px; position: relative; }
+        .hero-code::before { content: '● ● ●'; position: absolute; top: 14px; left: 18px; font-size: 9px; letter-spacing: 4px; color: var(--fg-3); }
+        .hero-code pre { margin-top: 22px; overflow-x: auto; }
+        .hero-code .kw { color: #c084fc; } .hero-code .fn { color: #60a5fa; } .hero-code .str { color: #34d399; } .hero-code .cm { color: #52525b; }
+
+        /* Section */
+        .section { padding: 100px 24px; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-tag { font-family: var(--mono); font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .14em; margin-bottom: 12px; }
+        .section-title { font-size: clamp(28px, 4vw, 40px); font-weight: 800; letter-spacing: -.02em; margin-bottom: 16px; }
+        .section-desc { font-size: 16px; color: var(--fg-2); max-width: 540px; margin: 0 auto; }
+        .container { max-width: var(--max-w); margin: 0 auto; }
+
+        /* Services */
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .service-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 26px; transition: all .25s; }
+        .service-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 30px -8px var(--accent-glow); }
+        .service-icon { width: 42px; height: 42px; border-radius: 10px; background: var(--accent-glow); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; color: var(--accent); }
+        .service-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+        .service-card p { font-size: 13px; color: var(--fg-2); line-height: 1.6; }
+
+        /* Projects */
+        .projects-grid { display: flex; flex-direction: column; gap: 100px; }
+        .project { display: grid; grid-template-columns: 1.3fr 1fr; gap: 50px; align-items: center; }
+        .project:nth-child(even) { grid-template-columns: 1fr 1.3fr; }
+        .project:nth-child(even) .project-carousel { order: 2; }
+        .project-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 8px; }
+        .project h3 { font-size: 26px; font-weight: 800; margin-bottom: 12px; }
+        .project p { font-size: 15px; color: var(--fg-2); line-height: 1.7; margin-bottom: 16px; }
+        .project-techs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+        .tech-pill { background: var(--bg-3); border: 1px solid var(--border); padding: 4px 10px; border-radius: 999px; font-size: 11px; color: var(--fg-2); font-family: var(--mono); }
+        .project-link { font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+        .project-link:hover { gap: 10px; }
+
+        /* Phone mockup carousel */
+        .project-carousel { position: relative; }
+        .phone-frame { width: 320px; margin: 0 auto; background: #1a1a1c; border-radius: 36px; padding: 6px; box-shadow: 0 25px 70px -12px rgba(0,0,0,.5); border: 1px solid #333; }
+        .phone-notch { width: 90px; height: 20px; background: #1a1a1c; border-radius: 0 0 12px 12px; margin: 0 auto; position: relative; z-index: 2; }
+        .phone-screen { border-radius: 30px; overflow: hidden; background: #fff; position: relative; aspect-ratio: 9/19; }
+        .phone-screen::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 28px; background: #fff; z-index: 3; transition: background .5s; }
+        .phone-screen::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 28px; background: #fff; z-index: 3; transition: background .5s; }
+        .phone-screen.dark-bars::before, .phone-screen.dark-bars::after { background: #000; }
+        .phone-screen.gray-bars::before { background: #808080; }
+        .phone-screen img { width: 100%; height: calc(100% - 56px); object-fit: contain; object-position: center; position: absolute; top: 28px; left: 0; opacity: 0; transition: opacity .5s; z-index: 2; background: #fff; }
+        .phone-screen img.dark-bg { background: #000; }
+        .phone-screen img.gray-bar { background: #fff; }
+        .phone-screen:has(img.gray-bar.active)::before { background: #808080; }
+        .phone-screen img.active { opacity: 1; }
+        .carousel-dots { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+        .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all .2s; }
+        .carousel-dot.active { background: var(--accent); width: 20px; border-radius: 4px; }
+
+        /* Laptop mockup */
+        .laptop-frame { width: 100%; max-width: 500px; margin: 20px auto 0; }
+        .laptop-screen { background: #1a1a1c; border-radius: 8px 8px 0 0; padding: 4px 4px 0; }
+        .laptop-screen-inner { border-radius: 5px 5px 0 0; overflow: hidden; background: #fff; position: relative; aspect-ratio: 16/10; }
+        .laptop-screen-inner img { width: 100%; height: 100%; object-fit: cover; object-position: top; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity .5s; }
+        .laptop-screen-inner img.active { opacity: 1; }
+        .laptop-base { height: 14px; background: linear-gradient(180deg, #2a2a2d 0%, #1a1a1c 100%); border-radius: 0 0 4px 4px; position: relative; }
+        .laptop-base::after { content: ''; position: absolute; top: 2px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: #333; border-radius: 2px; }
+        .laptop-bottom { width: 110%; margin-left: -5%; height: 6px; background: linear-gradient(180deg, #2a2a2d, #1a1a1c); border-radius: 0 0 10px 10px; }
+
+        /* About */
+        .about-grid { display: grid; grid-template-columns: auto 1fr; gap: 50px; align-items: center; }
+        .about-photo { width: 260px; height: 260px; border-radius: 50%; overflow: hidden; border: none; box-shadow: 0 20px 50px -12px rgba(0,0,0,.3); }
+        .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .about-content h3 { font-size: 28px; font-weight: 800; margin-bottom: 16px; }
+        .about-content p { font-size: 15px; color: var(--fg-2); line-height: 1.7; margin-bottom: 14px; }
+        .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .about-highlight { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--fg-2); }
+        .about-highlight svg { color: var(--accent); flex-shrink: 0; }
+
+        /* Contact */
+        .contact-section { background: var(--bg-2); border-top: 1px solid var(--border); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .contact-info h3 { font-size: 26px; font-weight: 800; margin-bottom: 14px; }
+        .contact-info p { font-size: 15px; color: var(--fg-2); line-height: 1.7; margin-bottom: 20px; }
+        .contact-methods { display: flex; flex-direction: column; gap: 10px; }
+        .contact-method { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; transition: border-color .2s; color: var(--fg); }
+        .contact-method:hover { border-color: var(--accent); }
+        .contact-method svg { color: var(--accent); flex-shrink: 0; }
+        .cm-label { font-size: 10px; color: var(--fg-3); text-transform: uppercase; letter-spacing: .1em; }
+        .cm-value { font-size: 14px; font-weight: 600; }
+        .contact-form { display: flex; flex-direction: column; gap: 12px; justify-content: flex-end; }
+        .contact-form input, .contact-form textarea { background: var(--bg-3); border: 1px solid var(--border); border-radius: 8px; padding: 13px 15px; font-size: 14px; color: var(--fg); font-family: var(--font); outline: none; transition: border-color .2s; }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); }
+        .contact-form textarea { min-height: 131px; resize: vertical; }
+        .contact-form .btn { width: 100%; justify-content: center; }
+
+        /* Footer */
+        .footer { padding: 36px 24px; text-align: center; border-top: 1px solid var(--border); }
+        .footer p { font-size: 13px; color: var(--fg-3); }
+        .footer-links { display: flex; justify-content: center; gap: 18px; margin-bottom: 14px; }
+        .footer-links a { color: var(--fg-3); transition: color .2s; }
+        .footer-links a:hover { color: var(--accent); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+            .hero-visual { display: none; }
+            .services-grid { grid-template-columns: 1fr; }
+            .project { grid-template-columns: 1fr !important; gap: 30px; }
+            .project:nth-child(even) .project-carousel { order: 0; }
+            .about-grid { grid-template-columns: 1fr; text-align: center; }
+            .about-photo { margin: 0 auto; }
+            .about-highlights { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(10,10,11,.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); flex-direction: column; padding: 24px; gap: 0; z-index: 99; border-bottom: 1px solid var(--border); }
+            html.light .nav-links { background: rgba(255,255,255,.95); }
+            .nav-links.open { display: flex; }
+            .nav-links a { font-size: 18px !important; font-weight: 700 !important; padding: 14px 0; border-bottom: 1px solid var(--border); color: var(--fg) !important; transition: color .2s !important; }
+            .nav-links a:hover { color: var(--accent) !important; }
+            .nav-links .nav-cta { display: none !important; }
+            .nav-mobile { display: block; }
+        }
+
+        /* Lang toggle */
+        [data-lang="en"] { display: none; }
+        body.lang-en [data-lang="es"] { display: none !important; }
+        body.lang-en [data-lang="en"] { display: block; }
+        body.lang-en [data-lang="en"].il { display: inline; }
+        body.lang-en [data-lang="en"].fl { display: flex; }
+        body.lang-en [data-lang="en"].if { display: inline-flex; }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="nav-inner">
+        <div class="nav-logo">Sergio<span>;</span>Ibarra</div>
+        <div class="nav-links" id="navLinks">
+            <a href="#services" data-lang="es">Servicios</a><a href="#services" data-lang="en" class="il">Services</a>
+            <a href="#projects" data-lang="es">Proyectos</a><a href="#projects" data-lang="en" class="il">Projects</a>
+            <a href="#about" data-lang="es">Sobre mí</a><a href="#about" data-lang="en" class="il">About</a>
+            <a href="#contact" data-lang="es">Contacto</a><a href="#contact" data-lang="en" class="il">Contact</a>
+            <a href="#contact" class="nav-cta" data-lang="es">Hablemos</a><a href="#contact" class="nav-cta" data-lang="en" class="il">Let's talk</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:20px">
+            <span onclick="toggleLang()" id="langBtn" style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--accent);cursor:pointer">EN</span>
+            <span onclick="toggleTheme()" id="themeBtn" style="cursor:pointer;color:var(--fg-2);display:flex;align-items:center"><svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg></span>
+            <button class="nav-mobile" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-inner">
+        <div>
+            <div class="hero-tag" data-lang="es">Ingeniero en Informática</div>
+            <div class="hero-tag" data-lang="en">Software Engineer</div>
+            <h1 data-lang="es">Desarrollo de software <span class="accent">a tu medida</span></h1>
+            <h1 data-lang="en">Custom software <span class="accent">built for you</span></h1>
+            <p data-lang="es">Transformo ideas en sistemas completos. Desde la planeación hasta la entrega y mantenimiento — todo bajo un mismo equipo.</p>
+            <p data-lang="en">I turn ideas into complete systems. From planning to delivery and maintenance — all under one team.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary" data-lang="es">Solicitar cotización</a><a href="#contact" class="btn btn-primary" data-lang="en">Request a quote</a>
+                <a href="#projects" class="btn btn-outline" data-lang="es">Ver proyectos</a><a href="#projects" class="btn btn-outline" data-lang="en">See projects</a>
+            </div>
+            <div class="hero-stats">
+                <div><div class="stat-n">5+</div><div class="stat-l" data-lang="es">Años exp.</div><div class="stat-l" data-lang="en">Years exp.</div></div>
+                <div><div class="stat-n">10+</div><div class="stat-l" data-lang="es">Proyectos</div><div class="stat-l" data-lang="en">Projects</div></div>
+                <div><div class="stat-n">100%</div><div class="stat-l" data-lang="es">A la medida</div><div class="stat-l" data-lang="en">Custom</div></div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-code"><pre><span class="cm">// Building your next project</span>
+<span class="kw">class</span> <span class="fn">Project</span> {
+  <span class="fn">constructor</span>(idea) {
+    <span class="kw">this</span>.stack = [<span class="str">'PHP'</span>, <span class="str">'React'</span>,
+      <span class="str">'Node.js'</span>, <span class="str">'MySQL'</span>];
+    <span class="kw">this</span>.status = <span class="str">'building'</span>;
+  }
+  <span class="fn">deliver</span>() {
+    <span class="kw">return</span> <span class="str">'✓ Production ready'</span>;
+  }
+}</pre></div>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section class="section" id="services">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag" data-lang="es">Servicios</div><div class="section-tag" data-lang="en">Services</div>
+            <h2 class="section-title" data-lang="es">Soluciones que impulsan tu negocio</h2><h2 class="section-title" data-lang="en">Solutions that power your business</h2>
+            <p class="section-desc" data-lang="es">Tecnología personalizada adaptada a tu operación real.</p><p class="section-desc" data-lang="en">Custom technology adapted to your real operation.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card"><div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3 data-lang="es">Sistemas Web</h3><h3 data-lang="en">Web Systems</h3><p data-lang="es">Dashboards, CRMs, ERPs y sistemas de gestión empresarial.</p><p data-lang="en">Dashboards, CRMs, ERPs and business management systems.</p></div>
+            <div class="service-card"><div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div><h3 data-lang="es">Apps Móviles (PWA)</h3><h3 data-lang="en">Mobile Apps (PWA)</h3><p data-lang="es">Apps instalables desde el navegador con funcionalidad nativa.</p><p data-lang="en">Browser-installable apps with native functionality.</p></div>
+            <div class="service-card"><div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 01-8 0"/></svg></div><h3>E-Commerce</h3><p data-lang="es">Tiendas online con catálogo, carrito, checkout y panel admin.</p><p data-lang="en">Online stores with catalog, cart, checkout and admin panel.</p></div>
+            <div class="service-card"><div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/></svg></div><h3 data-lang="es">Infraestructura</h3><h3 data-lang="en">Infrastructure</h3><p data-lang="es">Servidores VPS, SSL, deploy automatizado y backups.</p><p data-lang="en">VPS servers, SSL, automated deploy and backups.</p></div>
+            <div class="service-card"><div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></div><h3 data-lang="es">Soporte Técnico</h3><h3 data-lang="en">Tech Support</h3><p data-lang="es">Mantenimiento, bugs, actualizaciones y rendimiento.</p><p data-lang="en">Maintenance, bugs, updates and performance.</p></div>
+            <div class="service-card"><div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><h3 data-lang="es">Liderazgo Técnico</h3><h3 data-lang="en">Tech Leadership</h3><p data-lang="es">Dirección de equipos, code review y mentoría.</p><p data-lang="en">Team direction, code review and mentorship.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section class="section" id="projects" style="background:var(--bg-2)">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag" data-lang="es">Proyectos</div><div class="section-tag" data-lang="en">Projects</div>
+            <h2 class="section-title" data-lang="es">Algunos de mis trabajos</h2><h2 class="section-title" data-lang="en">Some of my work</h2>
+        </div>
+        <div class="projects-grid">
+
+            <!-- Siliba -->
+            <div class="project">
+                <div class="project-carousel">
+                    <!-- Phone: mobile screenshots -->
+                    <div class="phone-frame"><div class="phone-notch"></div><div class="phone-screen" id="carousel-siliba">
+                        <img src="screenshots/siliba/Screenshot 2026-04-29 184904.png" class="active">
+                        <img src="screenshots/siliba/Screenshot 2026-04-29 185951.png">
+                        <img src="screenshots/siliba/Screenshot 2026-04-29 190131.png">
+                        <img src="screenshots/siliba/Screenshot 2026-04-29 190203.png">
+                        <img src="screenshots/siliba/Screenshot 2026-04-29 190436.png">
+                    </div></div>
+                    <div class="carousel-dots" id="dots-siliba"></div>
+                    <!-- Laptop: desktop screenshots -->
+                    <div class="laptop-frame">
+                        <div class="laptop-screen"><div class="laptop-screen-inner" id="carousel-siliba-desktop">
+                            <img src="screenshots/siliba/Screenshot 2026-04-29 185145.png" class="active">
+                            <img src="screenshots/siliba/Screenshot 2026-04-29 185056.png">
+                        </div></div>
+                        <div class="laptop-base"></div>
+                        <div class="laptop-bottom"></div>
+                    </div>
+                    <div class="carousel-dots" id="dots-siliba-desktop"></div>
+                </div>
+                <div>
+                    <div class="project-tag">SaaS · B2B</div>
+                    <h3>Siliba</h3>
+                    <p data-lang="es">Plataforma integral de gestión para negocios de belleza y bienestar. Calendario inteligente, gestión de empleados, marketplace, programa de lealtad y reportes en tiempo real. 100+ negocios activos y 5,000+ citas agendadas.</p>
+                    <p data-lang="en">Comprehensive management platform for beauty & wellness businesses. Smart calendar, employee management, marketplace, loyalty program and real-time reports. 100+ active businesses, 5,000+ appointments.</p>
+                    <div class="project-techs"><span class="tech-pill">React</span><span class="tech-pill">Node.js</span><span class="tech-pill">MySQL</span><span class="tech-pill">Prisma</span><span class="tech-pill">PWA</span></div>
+                    <a href="https://siliba.com" target="_blank" class="project-link">Visitar siliba.com →</a>
+                </div>
+            </div>
+
+            <!-- Llantera Padilla -->
+            <div class="project">
+                <div class="project-carousel" data-carousel="llantera">
+                    <div class="phone-frame"><div class="phone-notch"></div><div class="phone-screen" id="carousel-llantera">
+                        <img src="screenshots/llanterapadilla/Screenshot 2026-04-29 174826.png" class="active" data-dark="0">
+                        <img src="screenshots/llanterapadilla/Screenshot 2026-04-29 174912.png" class="dark-bg" data-dark="1">
+                        <img src="screenshots/llanterapadilla/Screenshot 2026-04-29 174949.png" data-dark="0">
+                        <img src="screenshots/llanterapadilla/Screenshot 2026-04-29 175124.png" data-dark="0">
+                    </div></div>
+                    <div class="carousel-dots" id="dots-llantera"></div>
+                </div>
+                <div>
+                    <div class="project-tag">E-Commerce · PWA</div>
+                    <h3>Llantera Padilla</h3>
+                    <p data-lang="es">PWA completa para una llantera. Tienda multi-categoría con 5 líneas de productos, carrito, checkout con transferencia/efectivo, Google Maps para envíos, gestión de inventario, empleados, citas y pedidos.</p>
+                    <p data-lang="en">Full PWA for a tire shop. Multi-category store with 5 product lines, cart, checkout with transfer/cash, Google Maps for deliveries, inventory, employees, appointments and orders.</p>
+                    <div class="project-techs"><span class="tech-pill">PHP</span><span class="tech-pill">MySQL</span><span class="tech-pill">Vanilla JS</span><span class="tech-pill">Google Maps</span><span class="tech-pill">OAuth</span></div>
+                </div>
+            </div>
+
+            <!-- SiteOne -->
+            <div class="project">
+                <div class="project-carousel" data-carousel="siteone">
+                    <div class="phone-frame"><div class="phone-notch"></div><div class="phone-screen" id="carousel-siteone" style="background:#f5f5f7">
+                        <img src="screenshots/siteoneapp/Screenshot 2026-04-29 181158.png" class="active" style="object-fit:cover;object-position:top">
+                        <img src="screenshots/siteoneapp/Screenshot 2026-04-29 181359.png" style="object-fit:cover;object-position:top">
+                        <img src="screenshots/siteoneapp/Screenshot 2026-04-29 181441.png" class="gray-bar" data-bar="gray" style="object-fit:cover;object-position:top">
+                        <img src="screenshots/siteoneapp/Screenshot 2026-04-29 181511.png" style="object-fit:cover;object-position:top">
+                        <img src="screenshots/siteoneapp/Screenshot 2026-04-29 181709.png" class="gray-bar" data-bar="gray" style="object-fit:cover;object-position:top">
+                        <img src="screenshots/siteoneapp/Screenshot 2026-04-29 175546.png" style="object-fit:cover;object-position:top">
+                    </div></div>
+                    <div class="carousel-dots" id="dots-siteone"></div>
+                </div>
+                <div>
+                    <div class="project-tag" data-lang="es">Gestión de Servicios</div><div class="project-tag" data-lang="en">Service Management</div>
+                    <h3>SiteOne App</h3>
+                    <p data-lang="es">Sistema de gestión de servicios técnicos en campo. Solicitudes con geolocalización, asignación de técnicos, seguimiento GPS en tiempo real, checklist de trabajo, reportes y control de empleados.</p>
+                    <p data-lang="en">Field service management system. Geolocated requests, technician assignment, real-time GPS tracking, work checklists, reports and employee management.</p>
+                    <div class="project-techs"><span class="tech-pill">PHP</span><span class="tech-pill">MySQL</span><span class="tech-pill">Google Maps</span><span class="tech-pill">OAuth</span><span class="tech-pill">PWA</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section class="section" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div style="display:flex;justify-content:center">
+                <div class="about-photo"><img src="assets/img/sergio.jpg" alt="Sergio Ibarra"></div>
+            </div>
+            <div class="about-content">
+                <div class="section-tag" data-lang="es">Sobre mí</div><div class="section-tag" data-lang="en">About me</div>
+                <h3>Sergio Ibarra</h3>
+                <p data-lang="es">Ingeniero en Informática con más de 5 años de experiencia. He liderado equipos completos de ingenieros, llevando proyectos desde la concepción de la idea hasta producción y mantenimiento continuo.</p>
+                <p data-lang="en">Software Engineer with 5+ years of experience. I've led complete engineering teams, taking projects from initial concept through production and ongoing maintenance.</p>
+                <p data-lang="es">Mi enfoque combina desarrollo, soporte e infraestructura — una solución integral para que tu negocio solo se preocupe por crecer.</p>
+                <p data-lang="en">My approach combines development, support and infrastructure — a comprehensive solution so your business only worries about growing.</p>
+                <div class="about-highlights">
+                    <div class="about-highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4 10-10"/></svg><span data-lang="es">Full-Stack</span><span data-lang="en" class="il">Full-Stack</span></div>
+                    <div class="about-highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4 10-10"/></svg><span data-lang="es">Liderazgo</span><span data-lang="en" class="il">Leadership</span></div>
+                    <div class="about-highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4 10-10"/></svg><span data-lang="es">DevOps</span><span data-lang="en" class="il">DevOps</span></div>
+                    <div class="about-highlight"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4 10-10"/></svg><span data-lang="es">Soporte 24/7</span><span data-lang="en" class="il">24/7 Support</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="section contact-section" id="contact">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag" data-lang="es">Contacto</div><div class="section-tag" data-lang="en">Contact</div>
+            <h2 class="section-title" data-lang="es">¿Tienes un proyecto en mente?</h2><h2 class="section-title" data-lang="en">Have a project in mind?</h2>
+            <p class="section-desc" data-lang="es">Cuéntame tu idea. Propuesta sin compromiso.</p><p class="section-desc" data-lang="en">Tell me your idea. No-obligation proposal.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3 data-lang="es">Hablemos</h3><h3 data-lang="en">Let's talk</h3>
+                <p data-lang="es">Respondo en menos de 24 horas.</p><p data-lang="en">I respond within 24 hours.</p>
+                <div class="contact-methods">
+                    <a href="https://wa.me/523334405600" target="_blank" class="contact-method"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg><div><div class="cm-label">WhatsApp</div><div class="cm-value">+52 333 440 5600</div></div></a>
+                    <a href="mailto:contacto@ingenieroibarra.com" class="contact-method"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg><div><div class="cm-label">Email</div><div class="cm-value">contacto@ingenieroibarra.com</div></div></a>
+                    <a href="tel:+523334405600" class="contact-method"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.35 1.9.66 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.31 1.85.54 2.81.66A2 2 0 0122 16.92z"/></svg><div><div class="cm-label" data-lang="es">Llamada</div><div class="cm-label" data-lang="en">Call</div><div class="cm-value">+52 333 440 5600</div></div></a>
+                    <a href="https://www.linkedin.com/in/sergio-ibarra-21b75b241/" target="_blank" class="contact-method"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg><div><div class="cm-label">LinkedIn</div><div class="cm-value">Sergio Ibarra</div></div></a>
+                </div>
+            </div>
+            <form class="contact-form" onsubmit="sendForm(event)">
+                <input type="text" name="name" data-lang="es" placeholder="Tu nombre" required><input type="text" name="name" data-lang="en" placeholder="Your name" required>
+                <input type="email" name="email" placeholder="email@example.com" required>
+                <textarea name="message" data-lang="es" placeholder="Cuéntame sobre tu proyecto..." required></textarea><textarea name="message" data-lang="en" placeholder="Tell me about your project..." required></textarea>
+                <button type="submit" class="btn btn-primary" data-lang="es">Enviar mensaje</button><button type="submit" class="btn btn-primary" data-lang="en">Send message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-links">
+        <a href="https://wa.me/523334405600" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+        <a href="https://www.linkedin.com/in/sergio-ibarra-21b75b241/" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg></a>
+        <a href="mailto:contacto@ingenieroibarra.com"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg></a>
+    </div>
+    <p>© 2026 Sergio Ibarra. <span data-lang="es">Todos los derechos reservados.</span><span data-lang="en" class="il">All rights reserved.</span></p>
+</footer>
+
+<!-- WhatsApp float -->
+<a href="https://wa.me/523334405600" target="_blank" style="position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:99;transition:transform .2s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// Theme toggle
+function toggleTheme() {
+    document.documentElement.classList.toggle('light');
+    var isLight = document.documentElement.classList.contains('light');
+    document.getElementById('themeIcon').innerHTML = isLight
+        ? '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>'
+        : '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/>';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+}
+if (localStorage.getItem('theme') === 'light') {
+    document.documentElement.classList.add('light');
+    document.getElementById('themeIcon').innerHTML = '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
+}
+
+// Lang toggle
+function toggleLang() {
+    document.body.classList.toggle('lang-en');
+    document.getElementById('langBtn').textContent = document.body.classList.contains('lang-en') ? 'ES' : 'EN';
+}
+
+// Contact form -> WhatsApp
+function sendForm(e) {
+    e.preventDefault();
+    var f = e.target;
+    var name = f.querySelector('[name="name"]:not([style*="display: none"])').value;
+    var email = f.querySelector('[name="email"]').value;
+    var msg = f.querySelector('[name="message"]:not([style*="display: none"])').value;
+    var text = encodeURIComponent('Hola Sergio, soy ' + name + ' (' + email + '). ' + msg);
+    window.open('https://wa.me/523334405600?text=' + text, '_blank');
+}
+
+// Carousels
+function initCarousel(id) {
+    var screen = document.getElementById('carousel-' + id);
+    var dotsEl = document.getElementById('dots-' + id);
+    if (!screen) return;
+    var imgs = screen.querySelectorAll('img');
+    var current = 0;
+    // Create dots
+    var dotsHtml = '';
+    for (var i = 0; i < imgs.length; i++) {
+        dotsHtml += '<div class="carousel-dot' + (i === 0 ? ' active' : '') + '" data-i="' + i + '"></div>';
+    }
+    dotsEl.innerHTML = dotsHtml;
+    // Click dots
+    dotsEl.querySelectorAll('.carousel-dot').forEach(function(dot) {
+        dot.addEventListener('click', function() { goTo(parseInt(dot.dataset.i)); });
+    });
+    // Auto advance
+    setInterval(function() { goTo((current + 1) % imgs.length); }, 4000);
+    function goTo(n) {
+        imgs[current].classList.remove('active');
+        dotsEl.children[current].classList.remove('active');
+        current = n;
+        imgs[current].classList.add('active');
+        dotsEl.children[current].classList.add('active');
+        // Toggle bar colors based on image
+        screen.classList.remove('dark-bars', 'gray-bars');
+        if (imgs[current].dataset.dark === '1') {
+            screen.classList.add('dark-bars');
+        } else if (imgs[current].dataset.bar === 'gray') {
+            screen.classList.add('gray-bars');
+        }
+    }
+}
+initCarousel('siliba');
+initCarousel('siliba-desktop');
+initCarousel('llantera');
+initCarousel('siteone');
+</script>
+</body>
+</html>
