@@ -100,8 +100,8 @@
         .project-link:hover { gap: 10px; }
 
         /* Phone mockup carousel */
-        .project-carousel { position: relative; }
-        .phone-frame { width: 320px; margin: 0 auto; background: #1a1a1c; border-radius: 36px; padding: 6px; box-shadow: 0 25px 70px -12px rgba(0,0,0,.5); border: 1px solid #333; }
+        .project-carousel { position: relative; display: flex; flex-direction: column; align-items: center; }
+        .phone-frame { width: 320px; margin: 0 auto; background: #1a1a1c; border-radius: 36px; padding: 6px; box-shadow: 0 25px 70px -12px rgba(0,0,0,.5); border: 1px solid #333; max-width: 80vw; }
         .phone-notch { width: 90px; height: 20px; background: #1a1a1c; border-radius: 0 0 12px 12px; margin: 0 auto; position: relative; z-index: 2; }
         .phone-screen { border-radius: 30px; overflow: hidden; background: #fff; position: relative; aspect-ratio: 9/19; }
         .phone-screen::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 28px; background: #fff; z-index: 3; transition: background .5s; }
